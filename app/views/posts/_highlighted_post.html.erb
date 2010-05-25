@@ -1,0 +1,12 @@
+<% div_for(post) do %>
+  <h3><%= link_to highlight(post.title, query), post%></h3>
+  <div id="category">
+    Категория: <%= post.category.all_to_parent if post.category%>
+  </div>    
+  <div>
+    <%= highlight(post.body.to_s, query)%>
+  </div>
+  <div>
+    Метки: <%= highlight(post.tag_list.to_s, query)%>
+  </div>
+<% end %>

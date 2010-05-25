@@ -1,0 +1,11 @@
+<% title "Управление категориями" %>
+<h1>Категории</h1>
+
+<ul id="categories">
+<% @categories.each do |c|%>
+  <%= render :partial => "category", :locals => {:category => c}%>
+<% end %>
+  <li id="root">
+    <%= link_to_remote "Добавить", :url => new_category_path %>
+  </li>
+</ul>

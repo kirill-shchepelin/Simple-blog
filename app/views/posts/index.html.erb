@@ -1,0 +1,29 @@
+<h1>Simple blog</h1>
+<div id="search_toggle">
+  <%= link_to_function "Поиск", update_page{|page| page.toggle 'search'}%>
+</div>
+<div id="search" style="display:none;">
+  <%= render :partial => "search"%>
+</div>
+<div id="posts">
+<% @posts.each do |post|%>
+  <% div_for(post) do %>
+    <h3><%= link_to post.title, post%></h3>
+    <div id="category">
+      Категория: <%= post.category.all_to_parent if post.category%>
+    </div>    
+    <div>
+      <%= post.body%>
+    </div>
+    <div>
+      Метки: <%= post.tag_list%>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<%= will_paginate @posts %>
+
+<% if admin? %>
+  <%= link_to "Новый пост", new_post_path%>
+<% end %>

@@ -1,0 +1,8 @@
+<% if logged_in? %>
+Здравствуйте, <%= current_user.username %>.
+  <% if current_user.is_admin? %>
+    <span class="notification red"> Вы администратор</span> <%= link_to "Выйти", logout_path%>
+  <% end %>
+<% else %>
+  Вы можете <%= link_to "Войти", login_path %> или <%= link_to "Зарегистрироваться", signup_path %>
+<% end %>

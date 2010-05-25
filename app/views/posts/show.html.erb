@@ -1,0 +1,25 @@
+<h1><%= @post.title %></h1>
+<% if admin? %>
+  <%= link_to "Редактировать", edit_post_path(@post)%> | <%= link_to "Удалить", post_path(@post), :method => :delete, :confirm => "Вы уверены?" %>
+<% end %>
+<%= @post.body%>
+<div id="tags">
+Метки: <%= @post.tag_list%>
+</div>
+<% if @post.category%>
+  <div id="category">
+    Категория: <%= @post.category.all_to_parent if @post.category%>
+  </div>
+<% end %>
+<%= @post.created_at.to_s(:long_time)%>
+<% if @post.created_at != @post.updated_at%>
+<br/>
+<small>Последний раз отредактирован <%= @post.updated_at.to_s(:long_time)%></small>
+<% end %>
+<div id="comments">
+  <h2>Комментарии: </h2>
+  <%= render :partial => "comment", :collection => @post.comments %>
+</div>
+<div id="new_comment">
+<%= render :partial => "new_comment" %>
+</div>

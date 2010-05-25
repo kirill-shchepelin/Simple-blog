@@ -1,0 +1,14 @@
+<% div_for(comment) do %>
+  <p>
+    <%= comment.owner %>
+  </p>
+  <p>
+    <%= comment.body%>
+  </p>
+  <p>
+    <%= comment.created_at.to_s(:long_time)%>
+  </p>
+  <% if admin?%>
+    <%= draw_status(comment) %>
+  <% end %>
+<% end %>

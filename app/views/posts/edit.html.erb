@@ -1,0 +1,50 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery.autocomplete' %>
+  <%= stylesheet_link_tag 'jquery.autocomplete' %>
+  <script type="text/javascript">
+  	$().ready(function() {
+		  $("#category").autocomplete("<%=category_autocomplete_path(:format => :js)%>", {
+			  width: 260,
+			  selectFirst: true,
+			  formatItem: function(data) {
+				  return data[0] 
+			  }
+		  });
+		  $("#category").result(function(event, data, formatted) {
+			  if (data)
+				  $().find("#post_category_id").val(data[1]);
+		  });  	  
+		  $("#post_tag_list").autocomplete("<%=tags_autocomplete_path(:format => :js)%>", {
+			  width: 260,
+			  selectFirst: true,
+	  		multiple: true
+		  });
+		  
+  	});
+  </script>
+<% end %>
+<% title "Редактирование поста" %>
+<h1>Редактировать пост</h1>
+
+<% form_for @post do |f|%>
+  <p>
+    <%= f.label :title, 'Заголовок' %>
+    <%= f.text_field :title%>
+  </p>
+  <p>
+    <%= f.label :body, 'Пост'%>
+    <%= f.cktext_area :body, :swf_params=>{:assetable_type=>'User', :assetable_id=>current_user.id} %>    
+  </p>
+  <p>
+    <%= label_tag 'category', 'Категория' %>
+    <%= text_field_tag 'category', @post.category_name %>
+    <%= f.hidden_field :category_id %>
+  </p>
+  <p>
+    <%= f.label :tag_list, 'Метки'%>: <%= f.text_field :tag_list %>
+  </p>  
+  <p>
+    <%= f.submit "Сохранить" %>
+  </p>
+
+<% end %>

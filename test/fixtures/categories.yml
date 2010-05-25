@@ -1,0 +1,28 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: Test_1
+  parent_id: 1
+
+
+two:
+  name: Test_2
+  parent_id: 1
+
+three:
+  name: Test_2
+  parent_id: 1
+
+four:
+  name: Test_2
+  parent_id: 1
+
+five:
+  name: Test_2
+  parent_id: 1
+
+six:
+  name: Test_2
+  parent_id: 1
+  
+  

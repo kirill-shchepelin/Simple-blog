@@ -1,0 +1,42 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery.autocomplete' %>
+  <%= stylesheet_link_tag 'jquery.autocomplete' %>
+  <script type="text/javascript">
+  	$().ready(function() {
+		  $("#category").autocomplete("<%=category_autocomplete_path(:format => :js)%>", {
+			  width: 260,
+			  selectFirst: true,
+			  formatItem: function(data) {
+				  return data[0] 
+			  }
+		  });
+		  $("#category").result(function(event, data, formatted) {
+			  if (data)
+				  $().find("#search_category_id").val(data[1]);
+		  });  	  
+  	});
+  </script>
+<% end %>
+
+<% form_for Search.new, :url => {:action => 'search', :controller => 'posts'}, :html => {:method => :get} do |f| %>
+  <p>
+    <%= f.label :title, 'Название' %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body, 'Текст' %>
+    <%= f.text_field :body %>
+  </p>
+  <p>
+    <%= f.label :tags, 'Метки' %>
+    <%= f.text_field :tags %>
+  </p>
+  <p>
+    <%= label_tag 'category', 'Категория' %>
+    <%= text_field_tag 'category'%>
+    <%= f.hidden_field :category_id %>
+  </p>
+  <p>
+    <%= f.submit "Поиск"%>
+  </p>
+<% end %>

@@ -1,0 +1,28 @@
+<h1>Simple blog</h1>
+<h2>Поиск</h2>
+<div id="search_toggle">
+  <%= link_to_function "Поиск", update_page{|page| page.toggle 'search'}%>
+</div>
+<div id="search">
+  <%= render :partial => "search"%>
+</div>
+
+<% if !@posts.nil?%>
+<div id="posts">
+  <% @posts.each do |post|%>
+    <%= render :partial => 'highlighted_post', :locals => {:post => post, :query => @query}%>
+  <% end %>
+</div>  
+<% else %>
+  К сожалению, ничего не найдено.
+<% end %>
+
+
+
+
+  <%= will_paginate @posts if @posts%>
+
+<% if admin? %>
+  <%= link_to "Новый пост", new_post_path%>
+<% end %>
+

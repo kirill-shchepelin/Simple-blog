@@ -1,0 +1,12 @@
+<li id="category-<%= category.id%>">
+  <%= category.name %> <%= link_to_remote "Удалить", :url => category_path(category), :method => :delete%>
+  
+  <ul id="list-<%= category.id%>">
+    <%= render :partial => "category", :collection => category.children %>
+
+  <li id="parent-<%= category.id%>">
+    <%= link_to_remote "Добавить", :url => new_category_path(:parent => category.id) %>
+  </li>  
+  </ul>  
+</li>
+

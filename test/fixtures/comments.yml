@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  post_id: 1
+  body: MyText
+
+two:
+  user_id: 1
+  post_id: 1
+  body: MyText
+  
+three:
+  post_id: 1
+  body: MyText
+
+four:
+  post_id: 1
+  body: MyText
+  
+five:
+  post_id: 1
+  body: MyText
+  
+six:
+  post_id: 1
+  body: MyText

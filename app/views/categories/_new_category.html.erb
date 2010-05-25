@@ -1,0 +1,5 @@
+<li id="new_category">
+  <% form_remote_for @category do |f|%>
+  <%= hidden_field_tag 'category[parent_id]', parent %>  <%= f.text_field :name%> <%= f.submit "Сохранить"%>
+  <% end %>
+</li>
